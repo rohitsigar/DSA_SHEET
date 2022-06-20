@@ -47,38 +47,39 @@ public:
     }
 };
 
-// another solution with reduced space complexity
 
+// another soluton with time complexity nlogn 
+
+
+
+    #include<bits/stdc++.h>
 class Solution {
 public:
-    int longestCommonSubsequence(string text1, string text2) {
+    int lengthOfLIS(vector<int>& nums) {
         
-        int n = text1.size();
         
-        int m = text2.size();
+        int n = nums.size();
         
-       
+        vector<int> temp;
+        temp.push_back(nums[0]);
+        int ans = 1;
         
-        vector<int> prev(m+1 , 0);
-        vector<int> cur(m +1, 0);
-        
-        for(int i=1;i<=n;i++)
+        for(int i=1;i<n;i++)
         {
-            for(int j=1;j<=m;j++)
+            if(nums[i] > temp.back())
             {
-                if(text1[i-1]==text2[j-1])
-                {
-                    cur[j] = prev[j-1]+1;
-                }
-                else
-                {
-                    cur[j] = max(cur[j-1] , prev[j]);
-                }
+               temp.push_back(nums[i]);
+                ans++;
             }
-            prev = cur;
+            else
+            {
+                int ind = 
+                    (int)(lower_bound(temp.begin() , temp.end() , nums[i])-temp.begin());
+                temp[ind] = nums[i];
+            }
         }
-        
-        return prev[m];
+        return ans;
+
         
     }
 };
