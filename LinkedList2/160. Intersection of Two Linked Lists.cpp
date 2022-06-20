@@ -55,3 +55,29 @@ public:
         
     }
 };
+
+
+// more Simple solution
+
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        
+        ListNode *dA = headA;
+        ListNode *dB = headB;
+        
+        while(dA!=dB)
+        {
+            dA = (dA==NULL) ? headB : dA->next;
+            dB = (dB==NULL) ? headA : dB->next; 
+        }
+        
+        return dA;
+        
+        
+        
+        
+    }
+};
